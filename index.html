@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cek Slip Gaji Karyawan Non Staff</title>
+    <title>Cek Slip Gaji Karyawan</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -149,7 +149,7 @@
 
     <!-- HALAMAN DASHBOARD -->
     <div id="dashboard-section">
-        <h2>Daftar Slip Gaji Karyawan</h2>
+        <h2>Slip Gaji Karyawan</h2>
         <div class="profile-box">
             <strong>NIK:</strong> <span id="disp-nik"></span><br>
             <strong>Nama:</strong> <span id="disp-nama"></span><br>
@@ -162,8 +162,8 @@
                     <tr>
                         <th>NIK</th>
                         <th>NAMA</th>
-                        <th>Periode</th>
-                        <th>File Slip Gaji</th>
+                        <th>PERIODE</th>
+                        <th>FILE SLIP GAJI</th>
                     </tr>
                 </thead>
                 <tbody id="tabel-body"></tbody>
@@ -176,7 +176,7 @@
 
 <script>
     // GANTI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA (DIAKHIRI /exec)
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJTA3jFynCgI3uliBqBJvmAXPazk1-r6dYa3Eqa9SNl4JtL23vrDk5p1mnC9b3uz8/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxB5CNBLqixKQA8NmxF07zs3QM7KBUtNn14sQ33smyn9JEkX4srTdo9fy-OWJrQND0u/exec";
 
     function prosesLogin() {
         const nik = document.getElementById("nik").value.trim();
@@ -222,7 +222,7 @@
 
         document.getElementById("disp-nik").innerText = data.user.nik || "-";
         document.getElementById("disp-nama").innerText = data.user.nama || "-";
-        document.getElementById("disp-jabatan").innerText = data.user.jabatan || "-";
+        document.getElementById("disp-departemen").innerText = data.user.departemen || "-";
 
         const tbody = document.getElementById("tabel-body");
         tbody.innerHTML = "";
@@ -234,8 +234,11 @@
 
         data.laporan.forEach(item => {
             const namaFile = item.file_slip_gaji || "Lihat Slip Gaji";
-            const fileCell = item.link && item.link.trim() !== ""
-                ? `<a href="${item.link.trim()}" target="_blank" rel="noopener noreferrer" class="btn-download">${namaFile}</a>`
+            const linkUrl = item.link ? item.link.trim() : "";
+            const isValidLink = linkUrl.startsWith("http://") || linkUrl.startsWith("https://");
+
+            const fileCell = isValidLink
+                ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="btn-download">${namaFile}</a>`
                 : namaFile;
 
             const row = `<tr>
