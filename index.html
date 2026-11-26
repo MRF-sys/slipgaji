@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cek Slip Gaji Karyawan</title>
+    <title>Cek Slip Gaji Karyawan Non Staff</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -153,7 +153,7 @@
         <div class="profile-box">
             <strong>NIK:</strong> <span id="disp-nik"></span><br>
             <strong>Nama:</strong> <span id="disp-nama"></span><br>
-            <strong>Jabatan:</strong> <span id="disp-jabatan"></span>
+            <strong>Departemen:</strong> <span id="disp-departemen"></span>
         </div>
 
         <div class="table-responsive">
@@ -176,7 +176,7 @@
 
 <script>
     // GANTI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA (DIAKHIRI /exec)
-    const SCRIPT_URL = "TEMPEL_URL_APPS_SCRIPT_DISINI";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJTA3jFynCgI3uliBqBJvmAXPazk1-r6dYa3Eqa9SNl4JtL23vrDk5p1mnC9b3uz8/exec";
 
     function prosesLogin() {
         const nik = document.getElementById("nik").value.trim();
